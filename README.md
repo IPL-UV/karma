@@ -8,7 +8,7 @@ This repository contains the implementation of Kernel ARMA methods as described 
 > **"Support Vector Machines for Nonlinear Kernel ARMA System Identification"**  
 > *M. Martinez-Ramon, J.L. Rojo-Alvarez, G. Camps-Valls, J. Munoz-Mari, A. Navia-Vazquez, E. Soria-Olivas, A.R. Figueiras-Vidal*  
 > IEEE Transactions on Neural Networks, vol. 17, no. 6, pp. 1617 - 1622, June 2006.  
-> [View Paper](http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=4012036&tag=1)  
+> [View Paper](https://ieeexplore.ieee.org/abstract/document/4012036)  
 
 ## Table of Contents
 - [Description](#description)
@@ -47,14 +47,19 @@ To use the Kernel ARMA scripts, follow these steps:
 ## File Descriptions
 
 ### **Main Scripts**
-- **`DemoKARMA.m`**: Demonstrates the training of SVM-ARMA methods using a given set of input parameters.
+- **`DemoKARMA.m`**: Demonstrates the training of SVM-ARMA methods using a given set of input parameters. The demo shows how to initialize the problem, configure the model, and visualize the training results. It provides step-by-step guidance on how to replicate the results presented in the paper.  
+  **Features of the Demo:**
+  - **Problem Setup**: Selection of the method and loss function for training. Supported methods include `svr`, `2k`, `svr+2k`, `4k`, and `svr+4k`. Loss functions include L2 norm (`l2`), epsilon-insensitive loss (`eps`), and epsilon-Huber loss (`ehuber`).
+  - **Data Handling**: Loads datasets, generates input-output pairs, and builds kernel matrices using `BuildData.m` and `BuildKernels.m`.
+  - **Training**: Trains the model using `TrainKernel.m` with different loss functions, producing comparative results.
+  - **Visualization**: Generates scatter plots and boxplots to visualize the prediction performance and residuals for each loss method.
 
 ### **Functions**
-- **`BuildData.m`**: Prepares the training and testing datasets from a given signal using specified parameters such as order (P) and delay.
-- **`BuildKernels.m`**: Builds the kernel matrices for training using various kernel methods. Supported methods include 'svr', '2k', '4k', 'svr+2k', and 'svr+4k'.
-- **`TrainKernel.m`**: Trains the kernel ARMA model using the specified kernel matrices. It outputs the predictions for the test data and provides key performance metrics, such as nMSE.
-- **`ComputeResults.m`**: Computes performance metrics from the predicted and actual signals, including nMSE and other accuracy measurements.
-- **`kernelmatrix.m`**: Constructs a kernel matrix for a given method (currently, only RBF kernels are supported).
+- **`BuildData.m`**: Prepares the training and testing datasets from a given signal using specified parameters such as order (P) and delay. The function splits the signal into input-output pairs for SVM training.
+- **`BuildKernels.m`**: Builds the kernel matrices for training using various kernel methods. Supported methods include 'svr', '2k', '4k', 'svr+2k', and 'svr+4k'. The function constructs kernel representations for multiple input data sources.
+- **`TrainKernel.m`**: Trains the kernel ARMA model using the specified kernel matrices. It outputs the predictions for the test data and provides key performance metrics, such as nMSE, model characteristics, and training error.
+- **`ComputeResults.m`**: Computes performance metrics from the predicted and actual signals, including nMSE, model bias, and other accuracy measurements. The results are displayed for analysis and can be used to validate the model's effectiveness.
+- **`kernelmatrix.m`**: Constructs a kernel matrix for a given method (currently, only RBF kernels are supported). This function is used in the `BuildKernels.m` script to compute the kernel representations required for training.
 
 ## License and Copyright
 Copyright (c) 2006
